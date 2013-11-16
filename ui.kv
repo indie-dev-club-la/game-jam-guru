@@ -1,0 +1,113 @@
+#:kivy 1.4.1
+
+#:set title_height 60
+#:set header_height 24
+#:set selector_height 38
+#:set plus_button_height 38
+#:set spin_button_height 50
+
+
+<SeparatorBar>:
+    canvas:
+        Color:
+            rgb: [0.267, 0.573, 0.749]
+        Rectangle:
+            pos: root.pos
+            size: root.size
+
+<SelectorWidget>:
+    remove_button: remove_button
+    text_box: text_box
+
+    size_hint: (1,None)
+    height: selector_height + header_height
+    BoxLayout:
+        orientation: 'vertical'
+        pos: root.pos
+        size_hint: (1,None)
+        size: root.size
+        Label:
+            text: root.name
+            size_hint: (1, None)
+            height: header_height
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: (1, None)
+            spacing: 5
+            height: selector_height
+            StencilView:
+                id: text_box
+                canvas:
+                    Color:
+                        rgb: [0.267, 0.573, 0.749]
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                size_hint: (1, 1)
+            Widget:
+                id: remove_button
+                canvas:
+                    Color:
+                        rgb: [1, 0, 0]
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                size_hint: (None, 1)
+                width: selector_height
+            Widget:
+                canvas:
+                    Color:
+                        rgb: [0, 1, 0]
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                size_hint: (None, 1)
+                width: selector_height
+
+<PlusButtonWidget>:
+    size_hint: (1,None)
+    height: plus_button_height
+    BoxLayout:
+        orientation: 'horizontal'
+        pos: root.pos
+        size_hint: (1,None)
+        size: root.size
+        Widget:
+            canvas:
+                Color:
+                    rgb: [0, 0, 1]
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            size_hint: (None, 1)
+            width: plus_button_height    
+        Widget: 
+            size_hint: (1, 1)
+
+<MainInterface>:
+    heading_list: heading_list
+
+    BoxLayout:
+        orientation: 'vertical'
+        pos: root.pos
+        size: root.size
+        padding: 10
+        spacing: 10
+        Label:
+            text: "Game Jam Guru"
+            size_hint: (1, None)
+            height: title_height
+        SeparatorBar:
+            size_hint: (1, None)
+            height: 5
+        BoxLayout:
+            size_hint: (1,1)
+            orientation: 'vertical'
+            id: heading_list
+            spacing: 10
+        Button:
+            text: "Spin!"
+            size_hint: (1, None)
+            height: spin_button_height
+            on_release: root.spin_button_pressed()
+            
